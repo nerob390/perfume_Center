@@ -1,0 +1,89 @@
+{
+  "leave_data": [
+    {
+      "id": 1,
+      "name": "Annual Leave",
+      "totalLeave": "10",
+      "availableLeave": "8"
+    },
+    {
+      "id": 2,
+      "name": "Casual Leave",
+      "totalLeave": "8",
+      "availableLeave": "3"
+    },
+    {
+      "id": 3,
+      "name": "Bereavement Leave",
+      "totalLeave": "4",
+      "availableLeave": "2"
+    },
+    {
+      "id": 4,
+      "name": "Compensatory Leave",
+      "totalLeave": "6",
+      "availableLeave": "4"
+    },
+    {
+      "id": 5,
+      "name": "Sick Leave",
+      "totalLeave": "6",
+      "availableLeave": "2"
+    },
+    {
+      "id": 1,
+      "name": "Annual Leave",
+      "totalLeave": "10",
+      "availableLeave": "8"
+    },
+    {
+      "id": 2,
+      "name": "Casual Leave",
+      "totalLeave": "8",
+      "availableLeave": "3"
+    },
+    {
+      "id": 3,
+      "name": "Bereavement Leave",
+      "totalLeave": "4",
+      "availableLeave": "2"
+    },
+    {
+      "id": 4,
+      "name": "Compensatory Leave",
+      "totalLeave": "6",
+      "availableLeave": "4"
+    },
+    {
+      "id": 5,
+      "name": "Sick Leave",
+      "totalLeave": "6",
+      "availableLeave": "2"
+    }
+  ,
+    {
+      "id": 2,
+      "name": "Casual Leave",
+      "totalLeave": "8",
+      "availableLeave": "3"
+    },
+    {
+      "id": 3,
+      "name": "Bereavement Leave",
+      "totalLeave": "4",
+      "availableLeave": "2"
+    },
+    {
+      "id": 4,
+      "name": "Compensatory Leave",
+      "totalLeave": "6",
+      "availableLeave": "4"
+    },
+    {
+      "id": 5,
+      "name": "Sick Leave",
+      "totalLeave": "6",
+      "availableLeave": "2"
+    }
+  ]
+}
