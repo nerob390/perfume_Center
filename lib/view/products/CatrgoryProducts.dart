@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_standard/res/values/AppColor.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../controller/HomeController.dart';
 import '../../model/Category.dart';
 import '../../res/values/AppString.dart';
+import '../productDetails/productDetails.dart';
 
 class CategoryProducts extends StatefulWidget {
   final CategoryItem categoryItem;
@@ -48,84 +51,83 @@ class _ProductsState extends State<CategoryProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.categoryItem.name!),
-        ),
-        body: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            Obx(() => SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 7,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.7,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                  if (index < controller.productItemsCategory.length) {
-                    final data = controller.productItemsCategory[index];
-                    return GestureDetector(
-                      onTap: () {
-                        // Handle item tap
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(8),
-                                    topRight: Radius.circular(8),
-                                  ),
-                                  child: Image.network(
-                                    data.imageUrl!,
-                                    fit: BoxFit.cover,
-                                  ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.categoryItem.name!),
+        backgroundColor: AppColor.toolBarColor,
+      ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          Obx(() => SliverGrid(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 7,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.7,
+            ),
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                if (index < controller.productItemsCategory.length) {
+                  final data = controller.productItemsCategory[index];
+                  return GestureDetector(
+                    onTap: () {
+                      PersistentNavBarNavigator.pushNewScreen(context,screen:  ProductDetails(products: controller.productItemsCategory[index]));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8),
+                                ),
+                                child: Image.network(
+                                  data.imageUrl!,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(
-                                  data.name!,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                              child: Text(
+                                data.name!,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                                child: Text(
-                                  'Tk ${data.price}',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontWeight: FontWeight.bold),
-                                ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
+                              child: Text(
+                                'Tk ${data.price}',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontWeight: FontWeight.bold),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  } else {
-                    // Show loading indicator at the end of the list while loading more products
-                    return const Center(
-                      child: SizedBox.shrink(),
-                    );
-                  }
-                },
-                childCount: controller.productItemsCategory.length +
-                    (controller.hasMoreDataCategoryProduct.value ? 1 : 0),
-              ),
-            )),
-          ],
-        ),
+                    ),
+                  );
+                } else {
+                  // Show loading indicator at the end of the list while loading more products
+                  return const Center(
+                    child: SizedBox.shrink(),
+                  );
+                }
+              },
+              childCount: controller.productItemsCategory.length +
+                  (controller.hasMoreDataCategoryProduct.value ? 1 : 0),
+            ),
+          )),
+        ],
       ),
     );
   }

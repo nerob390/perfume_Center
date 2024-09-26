@@ -8,6 +8,8 @@ import 'package:flutter_standard/model/Product.dart';
 import 'package:flutter_standard/model/SliderItem.dart';
 import 'package:flutter_standard/utlis/utlis.dart';
 import 'package:get/get.dart';
+import '../db/DatabaseHelper.dart';
+import '../model/CartProduct.dart';
 import '../repository/HomeRepository.dart';
 
 class HomeController extends GetxController{
@@ -26,13 +28,36 @@ class HomeController extends GetxController{
   RxBool hasMoreData = true.obs; // Flag to check if there are more pages
   RxBool hasMoreDataCategory = true.obs;
   RxBool hasMoreDataCategoryProduct = true.obs;
-
+  //RxString cartCount = ''.obs;
+  var cartCount = 0.obs;
+  var cartProducts =<CartProduct>[].obs;
+  var totalPrice = 0.0.obs;
+  var subTotalPrice = 0.0.obs;
+  double deliveryCharge = 80.0;
   @override
   void onInit() {
     super.onInit();
 
     getProducts();
+    getCartCount();
+    getTotalPrice();
    // getCategoryPagination();
+  }
+
+  Future<void> getCartCount() async {
+    int count = await DatabaseHelper.countCartProducts();
+    Utils.logger.e("Count $count");
+    cartCount.value=count;
+  }
+  // Load products from the local database
+  Future<void> loadCartProducts() async {
+    final products = await DatabaseHelper.getCartProducts(); // Fetch cart products from DB
+    cartProducts.assignAll(products); // This will notify the UI
+    await getTotalPrice();
+  }
+  Future<void> getTotalPrice() async {
+    subTotalPrice.value = await DatabaseHelper.calculateTotalPrice();
+    totalPrice.value = subTotalPrice.value + deliveryCharge;
   }
 
   void getHomeData() {

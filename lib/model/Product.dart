@@ -12,6 +12,7 @@ class ProductItem {
   final String? sale_price;
   final String? stock_quantity;
   final String? imageUrl; // Add a field for the image URL
+  int? quantity;  // Add quantity field
 
   ProductItem({
     required this.id,
@@ -26,6 +27,7 @@ class ProductItem {
     required this.sale_price,
     required this.stock_quantity,
     required this.imageUrl,
+    this.quantity = 1, // Default quantity to 1
   });
 
   factory ProductItem.fromJson(Map<String, dynamic> json) {
@@ -49,6 +51,15 @@ class ProductItem {
       sale_price: json["sale_price"],
       stock_quantity: json["stock_quantity"].toString(),
       imageUrl: imageSrc,
+      quantity: json['quantity'] != null ? json['quantity'] as int : 1,  // Check if quantity exists
     );
   }
+  // Convert to JSON with only specific fields for local DB
+  Map<String, dynamic> toCartJson() => {
+    'id': id,
+    'title': name,
+    'price': price,
+    'thumbnail': imageUrl,
+    'quantity': quantity, // Add quantity to be saved in the database
+  };
 }

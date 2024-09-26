@@ -11,7 +11,7 @@ class SliderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // If there are no images, return an empty container
     if (sliderImages.isEmpty) {
-      return const CircularProgressIndicator();
+      return const SizedBox.shrink();
     }
 
     return CarouselSlider.builder(

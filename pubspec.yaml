@@ -46,6 +46,8 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   carousel_slider: ^4.2.1
   persistent_bottom_nav_bar: ^5.0.2
+  badges: ^3.0.2
+  sqflite: ^2.0.2
 
 dev_dependencies:
   flutter_test:

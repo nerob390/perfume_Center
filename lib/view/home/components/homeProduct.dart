@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_standard/view/home/components/slider.dart';
+import 'package:flutter_standard/view/productDetails/productDetails.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -136,11 +137,12 @@ class HomeProduct extends StatelessWidget {
               final data = controller.productItems[index];
               return GestureDetector(
                 onTap: () {
-                  // Handle item tap
+                  PersistentNavBarNavigator.pushNewScreen(context,screen:  ProductDetails(products: controller.productItems[index]));
+                 // Utils.toastMessage("Click");
                 },
                 child: Container(
                 decoration: BoxDecoration(
-                color: Color(0xffffffff),
+                color: const Color(0xffffffff),
                 borderRadius: BorderRadius.circular(12),
                 ),
                   child: Padding(

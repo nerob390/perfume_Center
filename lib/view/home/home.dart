@@ -54,6 +54,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppString.appName),
+        backgroundColor: AppColor.toolBarColor,
       ),
       body: HomeProduct(),
     );

@@ -5,6 +5,7 @@ import 'package:flutter_standard/view/home/MainScreen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../res/values/AppColor.dart';
 import '../../res/values/AppString.dart';
 import 'components/view_all_category.dart';
 
@@ -25,15 +26,14 @@ class _CategoryViewAllState extends State<CategoryViewAll> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text(AppString.categories),
+          backgroundColor: AppColor.toolBarColor,
         ),
         body: ViewAllCategory(),
 
 
-      ),
     );
   }
 }

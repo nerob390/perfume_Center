@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_standard/res/values/AppString.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../controller/HomeController.dart';
 import '../../res/values/AppColor.dart';
 import '../../utlis/utlis.dart';
+import '../productDetails/productDetails.dart';
 
 class AllProduct extends StatelessWidget {
   final controller = Get.put(HomeController());
@@ -28,6 +30,7 @@ class AllProduct extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppString.allProduct),
+        backgroundColor: AppColor.toolBarColor,
       ),
       body: Obx(() {
         return GridView.builder(
@@ -52,7 +55,7 @@ class AllProduct extends StatelessWidget {
             final data = controller.productItems[index];
             return GestureDetector(
               onTap: () {
-                // Handle item tap
+                PersistentNavBarNavigator.pushNewScreen(context,screen:  ProductDetails(products: controller.productItems[index]));
               },
               child: Container(
                 decoration: BoxDecoration(

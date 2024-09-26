@@ -1,8 +1,17 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:flutter_standard/res/values/AppColor.dart';
 import 'package:flutter_standard/view/home/home.dart';
+import 'package:flutter_standard/view/products/AllProduct.dart';
+import 'package:flutter_standard/view/viewAll/CategoryViewAll.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import '../controller/HomeController.dart';
+import 'cart/Cart.dart';
 
 class MainScreenNew extends StatefulWidget {
   const MainScreenNew({super.key});
@@ -13,64 +22,59 @@ class MainScreenNew extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreenNew> {
   final _controller = PersistentTabController(initialIndex: 0);
+  final controller = Get.put(HomeController());
 
   List<Widget> screens() {
     return [
       const Home(),
-      Container(
-        child: const Center(
-          child: Text(
-            "Men",
-            style: TextStyle(color: Colors.white, fontSize: 30.0),
-          ),
-        ),
-        color: Colors.yellow,
-      ),
-      Container(
-        child: const Center(
-          child: Text(
-            "Women",
-            style: TextStyle(color: Colors.white, fontSize: 30.0),
-          ),
-        ),
-        color: Colors.red,
-      ),
-      Container(
-        child: const Center(
-          child: Text(
-            "Profile",
-            style: TextStyle(color: Colors.white, fontSize: 30.0),
-          ),
-        ),
-        color: Colors.blue,
-      ),
+      AllProduct(),
+      CategoryViewAll(),
+      Cart(),
     ];
   }
 
   List<PersistentBottomNavBarItem> navBarItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
+        icon: Icon(Icons.home_outlined),
         title: "Home",
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: AppColor.toolBarColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person_2),
-        title: "Men",
-        activeColorPrimary: Colors.blue,
+        icon: Icon(Icons.apps),
+        title: "Products",
+        activeColorPrimary: AppColor.toolBarColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.woman),
-        title: "Women",
-        activeColorPrimary: Colors.blue,
+        icon: Icon(Icons.category_outlined),
+        title: "Category",
+        activeColorPrimary: AppColor.toolBarColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person),
-        title: "Profile",
-        activeColorPrimary: Colors.blue,
+
+/*        icon: badges.Badge(
+          badgeContent: Text(
+            controller.cartCount.value.toString(), // Show the cart count
+            style: TextStyle(color: Colors.white),
+          ),
+          //badgeColor: Colors.red,
+          position: BadgePosition.topEnd(),
+          // animationType: badges.BadgeAnimationType.scale,
+          child: Icon(Icons.shopping_cart),
+        ),*/
+        title: "My Cart",
+        icon: Obx(() => badges.Badge(
+          badgeContent: Text(
+            controller.cartCount.value.toString(),
+            style: TextStyle(color: Colors.white),
+          ),
+          position: BadgePosition.topEnd(),
+          child: Icon(Icons.shopping_cart),
+        )),
+        activeColorPrimary: AppColor.toolBarColor,
         inactiveColorPrimary: Colors.grey,
       ),
     ];

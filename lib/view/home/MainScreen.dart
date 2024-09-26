@@ -67,15 +67,15 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Men',
+            label: 'Products',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Women',
+            label: 'Category',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.close),
-            label: 'Women',
+            label: 'Cart',
           ),
         ],
       ),
