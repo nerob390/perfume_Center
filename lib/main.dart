@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_standard/res/routes/routes.dart';
 import 'package:flutter_standard/res/values/AppColor.dart';
+import 'package:flutter_standard/utlis/SharedPreference.dart';
 import 'package:flutter_standard/view/home/MainScreen.dart';
 import 'package:flutter_standard/view/main_screen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure that Flutter is initialized
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.white, // navigation bar color
     statusBarColor: Colors.indigo, // status bar color
   ));
+  await SharedPreference.init();
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {

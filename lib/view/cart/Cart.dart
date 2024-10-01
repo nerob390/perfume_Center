@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_standard/res/values/AppColor.dart';
+import 'package:flutter_standard/utlis/SharedPreference.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../controller/HomeController.dart';
 import '../../db/DatabaseHelper.dart';
 import '../../model/CartProduct.dart';
+import '../../res/routes/routes_name.dart';
 import '../../utlis/utlis.dart';
 
 class Cart extends StatefulWidget {
@@ -319,8 +321,15 @@ class _CartState extends State<Cart> {
 
                   ElevatedButton(
                     onPressed: () {
+                      if(SharedPreference.isFirstTime==false){
+                        Utils.toastMessageCenter("Please Log In First..");
+                        Get.toNamed(RoutesName.signIn);
+                      }else{
+                        Get.toNamed(RoutesName.orderPage);
+                      }
                       if (kDebugMode) {
                         print(_selectedValue.toString());
+
                       }
                     },
                     style: ElevatedButton.styleFrom(

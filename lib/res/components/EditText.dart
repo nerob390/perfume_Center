@@ -40,9 +40,9 @@ class EditText extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 color: AppColor.textFromFiled,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(0),
                 border: Border.all(
-                  color: showErrorMessage != true ? AppColor.themeColor : AppColor.themeColor,
+                  color: showErrorMessage != true ? AppColor.editText : AppColor.editText,
                 ),
               ),
               child: Container(
