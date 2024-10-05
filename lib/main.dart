@@ -13,7 +13,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized(); // Ensure that Flutter is initialized
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.white, // navigation bar color
-    statusBarColor: Colors.indigo, // status bar color
+    statusBarColor: Color(0xff8a0246), // replace with your custom color code
   ));
   await SharedPreference.init();
   runApp(const MyApp());

@@ -13,5 +13,5 @@ class AppColor{
   static const Color textColor=Color(0xff0F1D41);
   static const Color grayColorLight=Color(0x9ef3f3f3);
   static const Color statusBarColor=Color(0x9e0013f3);
-  static const Color toolBarColor=Color(0x9e0f1fde);
+  static const Color toolBarColor=Color(0xffb70b61);
 }
